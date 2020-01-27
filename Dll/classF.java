@@ -8,6 +8,19 @@ public class classF{
 	this.data=data;
 	}
 	}
+	public static Node delAtPos(Node head,int pos)
+	{
+		if(pos==1) return deleteAtBeg(head);
+		int c=0;
+		Node p=head;
+		pos--;
+		while(p!=null&&c++!=pos) p=p.next;
+		if(p==null) return deleteAtEnd(head);
+		Node t=p.next;
+		p.prev.next=t;
+		t=null;
+		return head;
+	}
 	public static Node insertBefore(Node head,int data,int value)
 	{	if(head==null) return null;
 		
@@ -133,6 +146,8 @@ public class classF{
 		head=deleteAtBeg(head);
 	else if(t==5)
 		head=deleteAtEnd(head);
+	else if(t==6)
+		head=delAtPos(head,scan.nextInt());
 	print(head);
 	
 	}
