@@ -23,6 +23,15 @@ public class classF{
 		p.prev=q;
 		return head;
 	}
+	public static Node deleteAtEnd(Node head)
+	{
+		if(head==null) return null;
+		Node p=head,x;
+		while(p.next!=null) p=p.next;
+		Node t=p;
+		p.prev.next=null;
+		return head;
+	}
 	public static Node insertAfter(Node head,int data,int value)
 	{
 		if(head==null) return null;
@@ -36,6 +45,17 @@ public class classF{
 		q.prev=p;
 		p.next.next.prev=q;
 		return head;
+	}
+	public static Node deleteAtBeg(Node head)
+	{
+		if(head==null) return null;
+		Node t=head;
+		
+		head=head.next;
+		t=null;
+		head.prev=null;
+		return head;
+
 	}
 	public static Node insertAtPos(Node head,int pos,int data){
 		if(head==null) return null;
@@ -107,8 +127,12 @@ public class classF{
 	head=insertBefore(head,scan.nextInt(),scan.nextInt());
 	else if(t==2)
 	head=insertAfter(head,scan.nextInt(),scan.nextInt());
-	else
+	else if(t==3)
 		head=insertAtPos(head,scan.nextInt(),scan.nextInt());
+	else if(t==4)
+		head=deleteAtBeg(head);
+	else if(t==5)
+		head=deleteAtEnd(head);
 	print(head);
 	
 	}
