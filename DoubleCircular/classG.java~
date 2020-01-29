@@ -72,10 +72,10 @@ public class classG{
 	print(head);
 	int t=scan.nextInt();
 	if(t==1)
-		head=CinsertAtBeg(head,scan.nextInt());
+		head=insertAtBeg(head,scan.nextInt());
 	
 	if(t==2)
-		head=CinsertAtEnd(head,scan.nextInt());
+		head=insertAtEnd(head,scan.nextInt());
 	print(head);
 	
 	}

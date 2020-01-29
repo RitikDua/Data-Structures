@@ -26,7 +26,28 @@ public class classG{
 	
 	
 	}
+	public static Node deleteAtBeg(Node head)
+	{
+		if(head.next==head) return null;
+		
+		Node p=head.prev;
+		p.next=head.next;
+		head.next.prev=p;
+		return head.next;
 	
+	}
+	
+	public static Node deleteAtEnd(Node head)
+	{
+		if(head.next==head) return null;
+		
+		Node p=head.prev;
+		head.prev=head.prev.prev;
+		p.prev.next=head;
+		return head;
+		
+	
+	}
 	public static Node insertAtBeg(Node head,int data)
 	{	
 	
@@ -71,11 +92,17 @@ public class classG{
 		
 	print(head);
 	int t=scan.nextInt();
-	if(t==1)
+	/*if(t==1)
 		head=insertAtBeg(head,scan.nextInt());
 	
 	if(t==2)
 		head=insertAtEnd(head,scan.nextInt());
+	*/if(t==1)
+		head=deleteAtBeg(head);//,scan.nextInt());
+	
+	if(t==2)
+		head=deleteAtEnd(head);//,scan.nextInt());
+	
 	print(head);
 	
 	}
