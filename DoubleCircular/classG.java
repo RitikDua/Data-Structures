@@ -64,19 +64,19 @@ public class classG{
 		int n=scan.nextInt();
 		Node head=null;
 		while(n-->0){
-		head=insertAtBeg(head,scan.nextInt());
-		//
+		head=insertAtEnd(head,scan.nextInt());
+	
 		}
 			
 		
-	print(head);/*
+	print(head);
 	int t=scan.nextInt();
 	if(t==1)
-		head=CinsertAtBeg(head,scan.nextInt());
+		head=insertAtBeg(head,scan.nextInt());
 	
 	if(t==2)
-		head=CinsertAtEnd(head,scan.nextInt());
-	print(head);*/
+		head=insertAtEnd(head,scan.nextInt());
+	print(head);
 	
 	}
 

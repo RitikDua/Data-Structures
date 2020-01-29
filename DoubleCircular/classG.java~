@@ -65,18 +65,18 @@ public class classG{
 		Node head=null;
 		while(n-->0){
 		head=insertAtEnd(head,scan.nextInt());
-		//
+	
 		}
 			
 		
-	print(head);/*
+	print(head);
 	int t=scan.nextInt();
 	if(t==1)
 		head=CinsertAtBeg(head,scan.nextInt());
 	
 	if(t==2)
 		head=CinsertAtEnd(head,scan.nextInt());
-	print(head);*/
+	print(head);
 	
 	}
 
