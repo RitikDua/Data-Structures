@@ -67,7 +67,7 @@ public class classG{
 	}
 	
 		static void print(Node head)
-	{
+	{if(head==null) return ;
 		Node p=head.next;
 		System.out.print(head.data+" ");
 		while(p!=head)
@@ -83,14 +83,15 @@ public class classG{
 	public static void main(String[] args){
 	Scanner scan=new Scanner(System.in);
 		int n=scan.nextInt();
+		int x=n;
 		Node head=null;
-		while(n-->0){
-		head=insertAtEnd(head,scan.nextInt());
+		while(n-->0) head=insertAtEnd(head,scan.nextInt());
 	
-		}
+		
 			
 		
 	print(head);
+	if(x>0){
 	int t=scan.nextInt();
 	/*if(t==1)
 		head=insertAtBeg(head,scan.nextInt());
@@ -105,6 +106,6 @@ public class classG{
 	
 	print(head);
 	
-	}
+}	}
 
 }
