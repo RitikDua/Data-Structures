@@ -80,6 +80,65 @@ public class classG{
 	
 	}
 	
+	public static Node deleteOdd(Node head)
+	{
+		Node p=head,x=null;
+		int i=0;
+		head=deleteAtBeg(head);
+		p=head.next;
+		while(p!=head)
+		{i++;
+			if(i%2!=0)
+			{
+				if(p.next==head) return deleteAtEnd(head);
+			
+				System.out.println(p.data);
+				Node t=p.prev,y=p.next;
+				y.prev=t;
+				t.next=y;
+				
+					p=y;
+					
+			i=0;
+			}
+			p=p.next;
+				
+		}
+		//return head;
+		return head;//deleteAtEnd(head);
+		//return head;
+	
+	}
+	public static Node deleteEven(Node head)
+	{
+		Node p=head,x=null;
+		int i=0;
+	//	head=deleteAtBeg(head);
+		p=head.next;
+		while(p!=head)
+		{i++;
+			if(i%2!=0)
+			{
+				if(p.next==head) return deleteAtEnd(head);
+			
+				System.out.println(p.data);
+				Node t=p.prev,y=p.next;
+				y.prev=t;
+				t.next=y;
+				
+					p=y;
+					
+			i=0;
+			}
+			p=p.next;
+				
+		}
+		//return head;
+		return head;//deleteAtEnd(head);
+		//return head;
+	
+	}
+	
 	public static void main(String[] args){
 	Scanner scan=new Scanner(System.in);
 		int n=scan.nextInt();
@@ -98,11 +157,18 @@ public class classG{
 	
 	if(t==2)
 		head=insertAtEnd(head,scan.nextInt());
-	*/if(t==1)
+	if(t==1)
 		head=deleteAtBeg(head);//,scan.nextInt());
 	
 	if(t==2)
 		head=deleteAtEnd(head);//,scan.nextInt());
+	*/
+	
+	if(t==1)
+		head=deleteOdd(head);//,scan.nextInt());
+	
+	if(t==2)
+		head=deleteEven(head);//,scan.nextInt());
 	
 	print(head);
 	
