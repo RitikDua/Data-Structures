@@ -7,7 +7,6 @@ public class IToPre{
 		p[(int)'^']=3;
 		p[(int)'*']=p[(int)'/']=2;
 		p[(int)'+']=p[(int)'-']=1;
-		if(s.empty()) s.push(ch);
 		if(ch==')')
 		{
 			s.push(ch);return o;}
@@ -21,16 +20,16 @@ public class IToPre{
 			}
 			return o;
 		}
-		if(ch=='^'&&(!s.empty()&&s.peek()=='^'))
+		if(ch=='^'&&s.peek()=='^')
 		{
 			char x=s.peek();
-			while(!s.empty()&&s.peek()=='^')
+			while(s.peek()=='^')
 			{
 				o.append(s.pop());}
 						s.push(ch);
 			return o;
 		}
-		if(s.peek()=='('||(p[(int)ch]>=p[(int)s.peek()]))//||p[(int)s.peek()]==')')
+		if((p[(int)ch]>=p[(int)s.peek()])||p[(int)s.peek()]==')')
 		{
 			s.push(ch); return o;}
 		char temp=s.pop();
@@ -58,8 +57,9 @@ public class IToPre{
 		}
 		while(!st.empty())
 			o.append(st.pop());
-		
-		return o.reverse().toString();
+		List<Character> l=Arrays.asList(o.toCharArray());
+		 Collections.reverse(l);
+		return l.stream().map(Character::valueOf);
 	}
 	public static void main(String[] args)
 	{
