@@ -28,8 +28,15 @@ public class BST{
   private static void inorder(Node root){
   if(root==null) return;
     inorder(root.left);
-    System.out.println(root.data);
+    System.out.print(root.data+" ");
     inorder(root.right);
+  }
+
+  private static boolean lookup(Node root,int data){
+    if(root==null) return false;
+    if(root.data==data) return true;
+    else if(root.data>data) return lookup(root.left,data);
+    else return lookup(root.right,data);
   }
   private static Node insert(Node root,int data){
     Node x=search(root,data);
@@ -38,6 +45,8 @@ public class BST{
     else x.right=y;
     return root;
   }
+  private static void delete(Node root,int data){
+  }
   public static void main(String[] args){
   Scanner scan=new Scanner(System.in);
   int n=scan.nextInt();
@@ -45,6 +54,13 @@ public class BST{
   root=new Node(scan.nextInt());
   while(n-->1)  root=insert(root,scan.nextInt());
   inorder(root);
-      
+  System.out.println("To delte");
+  int data=scan.nextInt();
+  if(!lookup(root,data)){
+    delete(root,data);
+    inorder(root);
+  }
+  else{
+  System.out.printf("There is no %d to delete",data);}
   }
 }
