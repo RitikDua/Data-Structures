@@ -1,6 +1,6 @@
 import java.util.*;
 class Graph{
-	public 	HashMap<Integer,ArrayList<Integer>> h=new HashMap<>();
+	HashMap<Integer,ArrayList<Integer>> h=new HashMap<>();
 	void addEdge(int src,int dest){
 		ArrayList<Integer> l;
 		if(h.containsKey(src)){
@@ -17,11 +17,25 @@ class Graph{
 	void DFSutil(int src,boolean visit[])
 	{
 			visit[src]=true;
+			System.out.print(src+" ");
 			for(Integer p:h.get(src)){
-				if(!visit[src])
+				if(!visit[p])
 					DFSutil(p,visit);
 			}
 	}
+	void DFSutil(int src,boolean visit[],Stack<Integer> st)
+	{ 
+			visit[src]=true;
+	if(h.get(src)!=null){ 		
+			//	System.out.print(src+" ");
+			for(Integer p:h.get(src)){
+				if(!visit[p])
+					DFSutil(p,visit,st);
+			}
+	}
+		st.push(src);
+	}
+
 
 
 }
@@ -44,9 +58,45 @@ public class SCC{
 			m.getValue().forEach((x)->System.out.print(x+" "));
 		}
 	}
+	/***Useful in Undirected GRAPHS***/
+	private static void connectedComponents(Graph g)
+	{
+		boolean[] visit=new boolean[999983];
+		for(Map.Entry<Integer,ArrayList<Integer>> p:g.h.entrySet()){
+			if(!visit[p.getKey()])
+			{
+				g.DFSutil(p.getKey(),visit);
+				System.out.println();
+			}
+		}
+	}
+	/***Useful in Directed graphs ***/
+	private static void printSCC(Graph g)
+	{
+		Stack<Integer> St=new Stack<Integer>();
+		boolean[] visit=new boolean[999983];
+
+		for(Map.Entry<Integer,ArrayList<Integer>> p:g.h.entrySet())
+			if(!visit[p.getKey()])
+				g.DFSutil(p.getKey(),visit,St);
+		Graph gr=transpose(g);
+		visit=new boolean[999983];
+		while(!St.empty())
+		{
+			int v=(int)St.pop();
+	//			System.out.println("{"+v+"}");
+				
+			if(!visit[v])
+			{
+			gr.DFSutil(v,visit);
+				System.out.println();
+			}
+		}
+	print(gr);
+	}	
 	public static void main(String[] args){
 		Scanner scan=new Scanner(System.in);
-		int n=9;
+		int n=999983;
 		Graph graph=new Graph();
 		while(n!=-1)
 		{
@@ -55,6 +105,14 @@ public class SCC{
 			graph.addEdge(x,y);
 		}
 		print(graph);
-		print(transpose(graph));
+		//graph.DFSutil(0,new boolean[10000]);
+	//	System.out.println("Transpose");
+	//	print(transpose(graph));
+		int choice=scan.nextInt();//1 for undirected else 0
+		if(choice==1)
+			connectedComponents(graph);
+		else
+			printSCC(graph);
+	
 	}
 }
