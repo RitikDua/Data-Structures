@@ -23,11 +23,34 @@ public class Paths{
 			}
 		}
 	}
+	static void dijkstra(HashMap<Integer,ArrayList<Integer>> h,HashMap<String,Integer> weights,HashMap<Integer,Integer> dist,int src)
+	{
+		int max=Integer.MAX_VALUE;
+		LinkedList<Integer> q=new LinkedList<>();//Treat as Queue
+		//add(src);
+	
+		for(Map.Entry<Integer,ArrayList<Integer>> m:h.entrySet())
+		{dist.put(m.getKey(),max);q.add(m.getKey());}
+		dist.put(src,0);
+
+		while(!q.isEmpty())
+		{
+			int min=Collections.min(q);
+			int u=q.remove(q.indexOf(min));
+			for(Integer p:h.get(u))
+			{
+				if(dist.get(p)>dist.get(u)+weights.get(""+u+" "+p)){
+					dist.put(p,dist.get(u)+weights.get(""+u+" "+p));
+
+				}	
+			}
+		}
+	}
 	public static void main(String[] args)
 	{
 		Scanner scan=new Scanner(System.in);
 		HashMap<Integer,ArrayList<Integer>> h=new HashMap<>();
-
+		HashMap<String,Integer> weights=new HashMap<>();
 		while(true)
 		{
 			int x=scan.nextInt(),y=scan.nextInt();
@@ -43,10 +66,15 @@ public class Paths{
 				l.add(y);
 				h.put(x,l);
 			}
+
+			int z=scan.nextInt();
+			String key=x+" "+y;
+			weights.put(key,z);
 		}
 		int src=scan.nextInt();//src from were to path is need to be measure
 		HashMap<Integer,Integer> dist=new HashMap<>();
-		bfsPath(h,src,dist);
+		dijkstra(h,weights,dist,src);
+	//	bfsPath(h,src,dist);
 		int dest=scan.nextInt();//to where dist needs to be measured
 		System.out.println(dist);
 
